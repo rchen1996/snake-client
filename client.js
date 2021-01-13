@@ -14,6 +14,12 @@ const net = require('net');
    conn.on('connect', () => {
     console.log('Successfully connected to game server');
     conn.write('Name: RBC');
+    // conn.write('Move: up');
+    // for (let i = 1; i < 500; i++) {
+    //   setTimeout(() => {
+    //     conn.write('Move: up');
+    //   }, 50 * i);
+    // }
    });
 
    conn.on('data', (data) => {
