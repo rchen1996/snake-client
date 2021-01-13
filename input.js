@@ -1,3 +1,5 @@
+const { MOVE_UP_KEY, MOVE_DOWN_KEY, MOVE_LEFT_KEY, MOVE_RIGHT_KEY, CTRL_C, message_map } = require('./constants');
+
 /**
  * Setup User Interface
  * Specifically, so that we can handle user input via stdin
@@ -8,22 +10,21 @@
 let connection;
 
 const handleUserInput = function(key) {
-  if (key === '\u0003') {
+  if (key === CTRL_C) {
     process.exit();
-  } else if (key === 'w') {
+  } else if (key === MOVE_UP_KEY) {
     connection.write("Move: up");
-  } else if (key === "a") {
+  } else if (key === MOVE_LEFT_KEY) {
     connection.write("Move: left");
-  } else if (key === "s") {
+  } else if (key === MOVE_DOWN_KEY) {
     connection.write("Move: down");
-  } else if (key === "d") {
+  } else if (key === MOVE_RIGHT_KEY) {
     connection.write("Move: right");
-  } else if (key === "h") {
-    connection.write("Say: sup");
-  } else if (key === "b") {
-    connection.write("Say: bye");
-  } else if (key === "y") {
-    connection.write("Say: yum");
+  } 
+  for (const mappedKey in message_map) {
+    if (key === mappedKey) {
+      connection.write(message_map[mappedKey])
+    }
   }
  };
 
